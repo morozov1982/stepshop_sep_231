@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.template.defaultfilters import title
+
+from mainapp.models import Product
 
 
 def get_menu_links(current='mainapp:index'):
@@ -21,11 +24,29 @@ def index(request):
 
 def products(request):
     title = 'товары'
+
+    products_all = Product.objects.all()  # [:2]
+
     context = {
         'title': title,
+        'products': products_all,
         'menu_links': get_menu_links('mainapp:products'),
     }
     return render(request, 'products.html', context)
+
+
+def product(request, pk):
+    title = 'Продукт'
+    prod = Product.objects.get(pk=pk)
+    same_products = Product.objects.exclude(pk=pk)
+
+    context = {
+        'title': title,
+        'product': prod,
+        'same_products': same_products,
+        'menu_links': get_menu_links('mainapp:products'),
+    }
+    return render(request, 'product.html', context)
 
 
 def about(request):
