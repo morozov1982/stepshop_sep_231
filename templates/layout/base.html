@@ -33,9 +33,12 @@
             <div class="col-md-12">
                 {# Комментарии #}
                 {% if user.is_active %}
-                    <span>{{ user.username|title }}</span>
+                    <span>{{ user.username|title }}</span> |
+                    <span><a href="{% url 'auth:logout' %}">Выйти</a></span>
                 {% else %}
-                    <span>Гость</span>
+                    <span>Гость</span> |
+                    <span><a href="{% url 'auth:login' %}">Войти</a></span> |
+                    <span><a href="{% url 'auth:register' %}">Регистрация</a></span>
                 {% endif %}
             </div>
         </div>
