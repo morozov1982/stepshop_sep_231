@@ -37,6 +37,9 @@
                     <span>
                         <a href="{% url 'auth:edit' %}" class="text-light">{{ user.username|title }}</a>
                     </span> | 
+                    <span>
+                        <a href="{% url 'admin_staff:users' %}" class="text-light">Админка</a>
+                    </span> | 
                     <span><a href="{% url 'auth:logout' %}" class="text-light">Выйти</a></span>
                     
                     
